@@ -152,16 +152,17 @@
 			</div>
 			<div class="col-md-6">
 				<h3>Send a Message</h3>
+				<!-- Netlify Form -->
 				<form class="site-form" data-netlify="true" method="POST" name="contact">
-                    <input type="hidden" name="form-name" value="contact">
+					<input type="hidden" name="form-name" value="contact">
 					<div class="form-group">
-						<input type="text" style="color: #fff;" class="form-control" placeholder="Your Name" name="name">
+						<input type="text" style="color: #fff;" class="form-control" placeholder="Your Name" name="name" required>
 					</div>
 					<div class="form-group">
 						<input type="email" style="color: #fff;" class="form-control" placeholder="Your Email" name="email" required>
 					</div>
 					<div class="form-group">
-						<textarea style="color: #fff;" class="form-control" rows="5" placeholder="Your Message" name="message"></textarea>
+						<textarea style="color: #fff;" class="form-control" rows="5" placeholder="Your Message" name="message" required></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Send">
