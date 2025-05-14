@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+    <link rel="icon" href="images/tope4.ico" type="image/x-icon">
 </head>
 <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
 
@@ -54,7 +55,7 @@
 				</div>
 				<p>I'm Temitope Bawa-Allah, an Application Support Engineer with a strong focus on C#, ASP.NET Core, and SQL. I specialize in maintaining scalable and efficient solutions for complex systems. As a support engineer, I’m constantly optimizing performance and ensuring systems are robust and maintainable.</p>
 				<p>I have experience working on enterprise-level applications, maintaining RESTful APIs, and optimizing databases. My passion lies in solving problems and staying up to date with the latest technologies.</p>
-				<p>Apart from my work as a engineer, I’m passionate about mentoring and I support the people around me in learning any skill. I also enjoy going for tech events, where I gain insights, collaborate with others to explore the endless possibilities in technology.</p>
+				<p>Apart from my work as an engineer, I’m passionate about mentoring and I support the people around me in learning any skill. I also enjoy going for tech events, where I gain insights, collaborate with others to explore the endless possibilities in technology.</p>
             </p>
 				<p>
 					<a href="mailto:temibawa@gmail.com" class="btn btn-primary px-4 py-2 btn-sm">Email Me</a>
@@ -151,15 +152,15 @@
 			</div>
 			<div class="col-md-6">
 				<h3>Send a Message</h3>
-				<form class="site-form">
+				<form class="site-form" data-netlify="true" method="POST">
 					<div class="form-group">
-						<input type="text" style="color: #fff;" class="form-control" placeholder="Your Name">
+						<input type="text" style="color: #fff;" class="form-control" placeholder="Your Name" name="name">
 					</div>
 					<div class="form-group">
-						<input type="email" style="color: #fff;" class="form-control" placeholder="Your Email">
+						<input type="email" style="color: #fff;" class="form-control" placeholder="Your Email" name="email" required>
 					</div>
 					<div class="form-group">
-						<textarea style="color: #fff;" class="form-control" rows="5" placeholder="Your Message"></textarea>
+						<textarea style="color: #fff;" class="form-control" rows="5" placeholder="Your Message" name="message"></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Send">
