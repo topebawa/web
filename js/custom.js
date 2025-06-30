@@ -25,6 +25,119 @@
 		}
 	};
 
+	/*----------------------------------------
+		Modern Enhancements
+	----------------------------------------*/
+	
+	// Scroll Progress Indicator
+	var scrollProgress = function() {
+		$(window).on('scroll', function() {
+			var scrollTop = $(window).scrollTop();
+			var docHeight = $(document).height();
+			var winHeight = $(window).height();
+			var scrollPercent = (scrollTop) / (docHeight - winHeight);
+			var scrollPercentRounded = Math.round(scrollPercent * 100);
+			$('.scroll-progress').css('width', scrollPercentRounded + '%');
+		});
+	};
+
+	// Enhanced Scroll Animations
+	var enhancedScrollAnimations = function() {
+		var observer = new IntersectionObserver(function(entries) {
+			entries.forEach(function(entry) {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		});
+
+		// Observe elements for scroll animations
+		$('.site-section, .resume-item, .skill-item, .certificate-item').each(function() {
+			$(this).addClass('animate-on-scroll');
+			observer.observe(this);
+		});
+	};
+
+	// Typing Animation for Hero Text
+	var typingAnimation = function() {
+		if ($('.site-hero h1 strong').length > 0) {
+			var text = $('.site-hero h1 strong').text();
+			$('.site-hero h1 strong').text('');
+			var i = 0;
+			
+			function typeWriter() {
+				if (i < text.length) {
+					$('.site-hero h1 strong').text($('.site-hero h1 strong').text() + text.charAt(i));
+					i++;
+					setTimeout(typeWriter, 100);
+				}
+			}
+			
+			setTimeout(typeWriter, 1000);
+		}
+	};
+
+	// Parallax Effect for Hero Background
+	var parallaxHero = function() {
+		$(window).on('scroll', function() {
+			var scrolled = $(window).scrollTop();
+			var parallaxSpeed = 0.5;
+			$('.site-hero').css('transform', 'translateY(' + (scrolled * parallaxSpeed) + 'px)');
+		});
+	};
+
+	// Enhanced Page Loader
+	var pageLoader = function() {
+		// Create loader if it doesn't exist
+		if ($('.page-loader').length === 0) {
+			$('body').prepend('<div class="page-loader"><div class="loader"></div></div>');
+		}
+
+		$(window).on('load', function() {
+			setTimeout(function() {
+				$('.page-loader').addClass('fade-out');
+				setTimeout(function() {
+					$('.page-loader').remove();
+				}, 500);
+			}, 800);
+		});
+	};
+
+	// Smooth Hover Effects for Cards
+	var cardHoverEffects = function() {
+		$('.resume-item, .skill-item, .certificate-item').on('mouseenter', function() {
+			$(this).find('img').addClass('hover-effect');
+		}).on('mouseleave', function() {
+			$(this).find('img').removeClass('hover-effect');
+		});
+	};
+
+	// Dynamic Background Particles
+	var createParticles = function() {
+		if ($('.site-hero').length > 0) {
+			var particles = '';
+			for (var i = 0; i < 50; i++) {
+				var size = Math.random() * 3 + 1;
+				var duration = Math.random() * 20 + 10;
+				var delay = Math.random() * 20;
+				var left = Math.random() * 100;
+				
+				particles += '<div class="particle" style="' +
+					'width: ' + size + 'px; height: ' + size + 'px; ' +
+					'left: ' + left + '%; ' +
+					'animation-duration: ' + duration + 's; ' +
+					'animation-delay: ' + delay + 's;"></div>';
+			}
+			
+			if ($('.particles-container').length === 0) {
+				$('.site-hero').append('<div class="particles-container">' + particles + '</div>');
+			}
+		}
+	};
+
 
 	// navigation
 	var OnePageNav = function() {
@@ -319,7 +432,16 @@
 
 
 	$(function(){
+		// Initialize enhanced features
+		pageLoader();
+		scrollProgress();
+		enhancedScrollAnimations();
+		typingAnimation();
+		parallaxHero();
+		cardHoverEffects();
+		createParticles();
 
+		// Initialize existing features
 		OnePageNav();
 		offCanvasNav();
 		contentWayPoint();

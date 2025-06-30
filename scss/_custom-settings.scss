@@ -13,7 +13,6 @@
 }
 
 @mixin icomoon() {
-	
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -25,19 +24,80 @@
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	
 }
 
-// Variables
-$font-primary: 'Nunito Sans', Arial, sans-serif;;
-$font-secondary: 'Nunito Sans', Arial, sans-serif;;
-$primary: #bac964;
-$secondary: #fd9025;
-$black: #000000;
-$white: #ffffff;
-$dropdown: #85C8DD;
+// Enhanced Color Palette
+:root {
+  // Primary Colors
+  --primary-color: #6c5ce7;
+  --primary-light: #a29bfe;
+  --primary-dark: #5f3dc4;
+  
+  // Secondary Colors
+  --secondary-color: #00b894;
+  --secondary-light: #00cec9;
+  --secondary-dark: #00a085;
+  
+  // Accent Colors
+  --accent-color: #fd79a8;
+  --accent-light: #fdcb6e;
+  --accent-dark: #e84393;
+  
+  // Neutral Colors
+  --text-primary: #2d3436;
+  --text-secondary: #636e72;
+  --text-light: #b2bec3;
+  --background-primary: #ffffff;
+  --background-secondary: #f8f9fa;
+  --background-dark: #2d3436;
+  
+  // Gradient Colors
+  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+  --gradient-dark: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  // Shadow Utilities
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+  
+  // Spacing
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  
+  // Border Radius
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 50%;
+  
+  // Transitions
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
 
+// SCSS Variables (for backward compatibility)
+$font-primary: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-secondary: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$primary: #6c5ce7;
+$secondary: #00b894;
+$accent: #fd79a8;
+$black: #2d3436;
+$white: #ffffff;
+$gray-light: #f8f9fa;
+$gray-medium: #636e72;
+$gray-dark: #2d3436;
+
+// Responsive Breakpoints
+$screen-xl: 1400px;
 $screen-lg: 1200px;
 $screen-md: 992px;
 $screen-sm: 768px;
-$screen-xs: 480px;
+$screen-xs: 576px;
