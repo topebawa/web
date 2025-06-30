@@ -142,26 +142,52 @@
 	// navigation
 	var OnePageNav = function() {
 		var navToggler = $('.navbar-toggler');
+		var scrollOffset = 80; // Account for fixed navbar height
+		
+		// Enhanced smooth scroll with proper offset
 		$(".smoothscroll[href^='#'], #pb-navbar ul li a[href^='#']").on('click', function(e) {
-		 	e.preventDefault();
-		 	var hash = this.hash;
-		 		
-		 	$('html, body').animate({
-
-		    scrollTop: $(hash).offset().top
-		  }, 700, 'easeInOutExpo', function(){
-		    window.location.hash = hash;
-		  });
+			e.preventDefault();
+			var hash = this.hash;
+			var targetElement = $(hash);
+			
+			if (targetElement.length) {
+				var scrollPosition = targetElement.offset().top - scrollOffset;
+				
+				$('html, body').animate({
+					scrollTop: scrollPosition
+				}, 700, 'easeInOutExpo', function(){
+					// Update URL without jumping
+					if (history.pushState) {
+						history.pushState(null, null, hash);
+					}
+				});
+			}
 		});
+		
+		// Close mobile menu when clicking nav links
 		$("#pb-navbar ul li a[href^='#']").on('click', function(e){
-			if ( navToggler.is(':visible') ) {
-		  	navToggler.click();
-		  }
+			if (navToggler.is(':visible')) {
+				navToggler.click();
+			}
 		});
 
-		$('body').on('activate.bs.scrollspy', function () {
-		  console.log('nice');
-		})
+		// Enhanced scrollspy activation
+		$(window).on('scroll', function() {
+			var scrollPos = $(window).scrollTop() + scrollOffset + 50;
+			
+			$('#pb-navbar ul li a[href^="#"]').each(function() {
+				var currLink = $(this);
+				var refElement = $(currLink.attr('href'));
+				
+				if (refElement.length && 
+					refElement.offset().top <= scrollPos && 
+					refElement.offset().top + refElement.outerHeight() > scrollPos) {
+					
+					$('#pb-navbar ul li').removeClass('active');
+					currLink.closest('li').addClass('active');
+				}
+			});
+		});
 	};
 	
 
@@ -266,14 +292,17 @@
 	
 	
 	var siteStellar = function() {
-		$(window).stellar({
-	    responsive: true,
-	    parallaxBackgrounds: true,
-	    parallaxElements: true,
-	    horizontalScrolling: false,
-	    hideDistantElements: false,
-	    scrollProperty: 'scroll'
-	  });
+		// Only initialize on non-mobile devices for better performance
+		if (!isMobile.any()) {
+			$(window).stellar({
+				responsive: true,
+				parallaxBackgrounds: true,
+				parallaxElements: true,
+				horizontalScrolling: false,
+				hideDistantElements: false,
+				scrollProperty: 'scroll'
+			});
+		}
 	};
 	
 
@@ -338,11 +367,17 @@
 
 	var smoothScroll = function() {
 		var $root = $('html, body');
+		var scrollOffset = 80;
 
-		$('.smoothscroll').click(function () {
-			$root.animate({
-		    scrollTop: $( $.attr(this, 'href') ).offset().top
-			}, 500);
+		$('.smoothscroll').click(function (e) {
+			e.preventDefault();
+			var target = $($.attr(this, 'href'));
+			
+			if (target.length) {
+				$root.animate({
+					scrollTop: target.offset().top - scrollOffset
+				}, 500);
+			}
 			return false;
 		});
 	};
@@ -446,9 +481,15 @@
 		offCanvasNav();
 		contentWayPoint();
 		navbarState();
+		siteStellar();
 		clickMenu();
 		smoothScroll();
 		portfolioMasonry();
+		
+		// Initialize magnificPopup if elements exist
+		if ($('.image-popup, .with-caption, .popup-youtube, .popup-vimeo, .popup-gmaps').length > 0) {
+			magnificPopupControl();
+		}
 	});
 
 	

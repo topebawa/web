@@ -1,3 +1,27 @@
+// CSS Custom Properties for consistent design system
+:root {
+	--primary-color: #6c5ce7;
+	--secondary-color: #00b894;
+	--accent-light: #fd79a8;
+	--background-dark: #2d3436;
+	--text-light: rgba(255, 255, 255, 0.8);
+	
+	// Gradients
+	--gradient-primary: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+	--gradient-secondary: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+	--gradient-accent: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+	
+	// Shadows
+	--shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+	--shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+	--shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
+	
+	// Transitions
+	--transition-fast: 0.2s ease-out;
+	--transition-normal: 0.3s ease-out;
+	--transition-slow: 0.5s ease-out;
+}
 
 @import "bootstrap/functions";
 @import "bootstrap/variables";
